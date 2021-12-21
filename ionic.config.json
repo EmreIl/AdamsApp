@@ -1,0 +1,7 @@
+{
+  "name": "AdamsApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
