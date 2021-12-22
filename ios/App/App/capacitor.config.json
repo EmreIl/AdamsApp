@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "AdamsApp",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
