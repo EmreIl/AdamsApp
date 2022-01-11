@@ -8,6 +8,46 @@
         <ion-title>{{ $route.name }}</ion-title>
       </ion-toolbar>
     </ion-header>
+
+    <div class="ion-margin-vertical" style="padding-bottom: 5rem">
+      <ion-card class="ion-padding">
+        <ion-card-header>
+          <ion-card-title>Stundenplan</ion-card-title>
+          <ion-item-divider color="none" class="divider"></ion-item-divider>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card-subtitle class="change-date">{{
+            new Date().toLocaleDateString({ weekday: "long" }) +
+            " der " +
+            new Date().toLocaleDateString()
+          }}</ion-card-subtitle>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="ion-padding">
+        <ion-card-header>
+          <ion-card-title>Termine</ion-card-title>
+          <ion-item-divider color="none" class="divider"></ion-item-divider>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card-subtitle>Klausuren</ion-card-subtitle>
+          <ion-card-content></ion-card-content>
+          <ion-card-subtitle>Sonstige Termine</ion-card-subtitle>
+          <ion-card-content></ion-card-content>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="ion-padding ion">
+        <ion-card-header>
+          <ion-card-title name="title">Hausaufgaben</ion-card-title>
+          <ion-item-divider
+            name="line"
+            color="none"
+            class="divider"
+          ></ion-item-divider>
+        </ion-card-header>
+      </ion-card>
+    </div>
   </ion-page>
 </template> 
 
@@ -19,8 +59,15 @@ import {
   IonButtons,
   IonMenuButton,
   IonTitle,
+  IonCardTitle,
+  IonItemDivider,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardContent,
+  IonCard,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
+
 export default defineComponent({
   components: {
     IonPage,
@@ -29,6 +76,12 @@ export default defineComponent({
     IonButtons,
     IonMenuButton,
     IonTitle,
+    IonCardTitle,
+    IonItemDivider,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardContent,
+    IonCard,
   },
   setup() {
     return {};

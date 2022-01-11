@@ -1,5 +1,5 @@
 <template>
-  <ion-grid style="width: 100%; height: 100%" class="container">
+  <ion-grid style="width: 100%" class="container">
     <!-- Check, ob 'subjects' Objekt einträge hat, ansonsten wird das 
       Grid nicht gerendert (führt sonst zu Fehlern) -->
     <ion-row style="height: 10%" class="days">
@@ -236,5 +236,8 @@ export default defineComponent({
 }
 .days ion-col:nth-child(2n + 0) {
   background-color: var(--ion-color-step-100);
+}
+.timeperiods {
+  color: white;
 }
 </style>

@@ -19,6 +19,7 @@
       </ion-segment>
       <div v-if="homework_list_type === 'current' && currentHomework">
         <app-homework-item
+          @click.prevent="markAsDone(hw_item.homework_id)"
           v-for="hw_item in currentHomework"
           :key="hw_item.id"
           :homework="hw_item"
@@ -45,9 +46,23 @@
       <ion-fab vertical="bottom" horizontal="end">
         <ion-fab-button class="floating-btn">+</ion-fab-button>
         <ion-fab-list side="start">
-          <ion-fab-button><ion-icon :icon="add"></ion-icon></ion-fab-button>
+          <ion-fab-button @click="setOpen(true)"
+            ><ion-icon :icon="add"></ion-icon
+          ></ion-fab-button>
         </ion-fab-list>
       </ion-fab>
+
+      <ion-modal
+        :is-open="isOpenRef"
+        css-class="my-custom-class"
+        @didDismiss="setOpen(false)"
+      >
+        <Modal
+          @cancelModal="setOpen(false)"
+          @addHomework="addHomework"
+          :data="data"
+        ></Modal>
+      </ion-modal>
     </main>
   </ion-page>
 </template>
@@ -67,11 +82,15 @@ import {
   IonFabButton,
   IonIcon,
   IonFabList,
+  IonModal,
+  alertController,
 } from "@ionic/vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { add, filterOutline } from "ionicons/icons";
 
 import HomeworkItem from "@/components/Homework/HomeworkItem.vue";
+
+import Modal from "@/components/Homework/AddHomework.vue";
 
 export default defineComponent({
   components: {
@@ -88,6 +107,9 @@ export default defineComponent({
     IonFabButton,
     IonIcon,
     IonFabList,
+    IonModal,
+
+    Modal,
     "app-homework-item": HomeworkItem,
   },
   data() {
@@ -95,9 +117,25 @@ export default defineComponent({
       homework_list_type: "current",
     };
   },
+  methods: {
+    addHomework(e) {
+      this.$store.dispatch("addHomework", e);
+      this.setOpen(false);
+    },
+    async markAsDone(hw) {
+      console.log(hw);
+      const alert = await alertController.create({
+        cssClass: "my-custom-class",
+        header: "Alert",
+        subHeader: "Subtitle",
+        message: "This is an alert message.",
+        buttons: ["OK"],
+      });
+      await alert.present();
+    },
+  },
   created() {
-    /*     this.$store.dispatch("loadHomework");
-     */
+    this.$store.dispatch("loadHomework");
   },
   computed: {
     currentHomework() {
@@ -112,7 +150,10 @@ export default defineComponent({
     },
   },
   setup() {
-    return { add, filterOutline };
+    const isOpenRef = ref(false);
+    const setOpen = (state) => (isOpenRef.value = state);
+    const data = { content: "New Content" };
+    return { isOpenRef, setOpen, data, add, filterOutline };
   },
 });
 </script>

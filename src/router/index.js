@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
+import store from '../store';
+
 
 
 
@@ -54,7 +56,7 @@ const router = createRouter({
   routes
 })
 
-/* router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
       next()
@@ -64,6 +66,6 @@ const router = createRouter({
   } else {
     next()
   }
-}) */
+})
 
 export default router

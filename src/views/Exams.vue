@@ -9,11 +9,27 @@
       </ion-toolbar>
     </ion-header>
   </ion-page>
-</template>
+</template> 
 
 <script>
-export default {};
-</script>
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
+} from "@ionic/vue";
+import { defineComponent } from "vue";
 
-<style>
-</style>
+export default defineComponent({
+  components: {
+    IonPage,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonMenuButton,
+    IonTitle,
+  },
+});
+</script>

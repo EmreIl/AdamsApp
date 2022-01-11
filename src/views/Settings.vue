@@ -11,7 +11,7 @@
     <ion-card class="ion-padding">
       <ion-card-header>Konto</ion-card-header>
       <ion-card-content class="text-center">
-        <ion-text>Max Mustermann</ion-text><br /><br />
+        <ion-text>Lucas Fischer</ion-text><br /><br />
         <ion-button color="primary" size="small" @click="logout"
           >Abmelden</ion-button
         >

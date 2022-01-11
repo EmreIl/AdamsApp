@@ -50,6 +50,9 @@ export default createStore({
         },
         loadHomework(state, homework) {
             state.homework = homework
+        },
+        addHomework(state, homework) {
+            state.homework.push(homework)
         }
     },
     actions: {
@@ -128,7 +131,25 @@ export default createStore({
                         commit('auth_error', err)
                     }
                 })
-
+        },
+        addHomework({ commit }, homework) {
+            console.log(homework);
+            commit('auth_request')
+            axios({ url: 'http://localhost:3000/homework', data: { homework }, method: 'POST' })
+                .then((response) => {
+                    if (response.data.status === 'success') {
+                        const homework = response.data.data
+                        commit('addHomework', homework)
+                        commit('auth_success')
+                    }
+                })
+                .catch(err => {
+                    if (err.response.status === 401) {
+                        commit('auth_error', 'unauthorized')
+                    } else {
+                        commit('auth_error', err)
+                    }
+                })
         },
 
     },

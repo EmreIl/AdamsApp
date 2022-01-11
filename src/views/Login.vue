@@ -15,6 +15,7 @@
             <ion-label position="floating">Schlüssel</ion-label>
             <ion-input
               v-model="user.key"
+              type="password"
               placeholder="Gebe deinen Schlüssel ein..."
             ></ion-input>
           </ion-item>
